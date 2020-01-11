@@ -1,11 +1,50 @@
 # Djangoの練習用リポジトリ
-
-## Step1
-### Setup
+## Setup
 
 ```bash
 pip install django
 ```
+
+## Commands
+
+- make run : Djangoサーバを立ち上げる
+
+
+# Step2
+- データベースからデータを取得して、表示させるようにする
+- POSTルートを作成し、データベースへinsertできるようにする。
+
+### DBからのSELECT
+```python
+Memo.objects.all()
+```
+
+選択の方法
+
+|用途|方法|例|
+|:---|:---|:---|
+|全カラム|all()|Memo.objects.all()
+|主キー指定|get(pk=?)|Memo.objects.all(pk=2)
+|where条件|filter({column1}=?, {column2}=?...)|Memo.objects.filter(name="hoge", locale="ja") ※AND条件になる
+|in指定|filter({column}__in=?)|Memo.objects.filter(name__in=["hoge", "foo"])
+|大小比較|filter({column}__[gt\|lt\|gte\|lte])|gt->">", lt->"<", gte->">=", lte->"gte"|
+|ソート|order_by({column})|Memo.objects.all().order_by("name")
+
+### indexへの反映
+※memosをparamとして渡す、memoにcontent、update_datetimeを持っている。
+```html
+<div >
+    {% for memo in memos %}
+    <div>
+        <p>{{ memo.content }}</p>
+        <p>{{ memo.update_datetime|date:"Y/m/d H:m:s" }}</p>
+    </div>
+    {% endfor %}
+</div>
+```
+
+# Step1
+ルートページを表示可能とする。
 
 ### Project/Application作成
 
@@ -59,3 +98,8 @@ cd {PJ_NAME} && python manage.py startapp {APP_NAME}
 #### Display設定
 - memo_app/views.py
 - templates/index.html (New)
+
+### Tips
+
+- どうやらデフォルトでホットリロードが走っているようす
+- ディレクトリ構成のテンプレートがあるわけではない。プロジェクトごとにポリシーを持って決める。
