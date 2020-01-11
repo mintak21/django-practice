@@ -27,7 +27,7 @@ Memo.objects.all()
 |主キー指定|get(pk=?)|Memo.objects.all(pk=2)
 |where条件|filter({column1}=?, {column2}=?...)|Memo.objects.filter(name="hoge", locale="ja") ※AND条件になる
 |in指定|filter({column}__in=?)|Memo.objects.filter(name__in=["hoge", "foo"])
-|大小比較|filter({column}__[gt\|lt\|gte\|lte])|gt->">", lt->"<", gte->">=", lte->"gte"|
+|大小比較|filter({column}__[gt\|lt\|gte\|lte])|gt:「>」, lt:"「<」, gte:「>=」, lte:「<=」|
 |ソート|order_by({column})|Memo.objects.all().order_by("name")
 
 ### indexへの反映
@@ -42,6 +42,8 @@ Memo.objects.all()
     {% endfor %}
 </div>
 ```
+
+### Formの作成
 
 # Step1
 ルートページを表示可能とする。
