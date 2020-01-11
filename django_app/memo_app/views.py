@@ -8,5 +8,16 @@ def index(request):
     params = {
         'var': 'Index View Display Test',
         'memos': memos,
+        'form': PostForm()
     }
     return render(request, 'index.html', params)
+
+
+def post(request):
+    form = PostForm(request.POST, instance=Memo())
+    if form.is_valid():
+        form.save()
+    else:
+        print(form.errors)
+
+    return redirect(to='/')

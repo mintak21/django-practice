@@ -1,6 +1,17 @@
 <html>
 <body>
-  <h1>{{ var }}</h1>
+    <div class="memo-form">
+        <h3>メモ内容</h3>
+        <form action="{% url 'post' %}" method="post">
+          {% csrf_token %}
+          <div class="text-memo">
+            {{ form.content }}
+          </div>
+          <div class="post-form">
+              <input type="submit" value="登録" class="post-botton">
+          </div>
+        </form>
+    </div>
     <div class="top_box">
         <h1>{{ var }}</h1>
         {% for memo in memos %}
