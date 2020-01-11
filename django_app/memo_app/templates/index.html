@@ -1,5 +1,14 @@
 <html>
 <body>
   <h1>{{ var }}</h1>
+    <div class="top_box">
+        <h1>{{ var }}</h1>
+        {% for memo in memos %}
+        <div>
+            <p>{{ memo.content }}</p>
+            <p>{{ memo.update_datetime|date:"Y/m/d H:m:s" }}</p>
+        </div>
+        {% endfor %}
+    </div>
 </body>
 </html>
